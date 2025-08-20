@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: blue;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .filters input, .filters select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    table th, table td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    table th {
+      background: #f0f0f0;
+    }
+
+    tr:hover {
+      background: #f9f9f9;
+    }
+
+    .credit {
+      color: green;
+      font-weight: bold;
+    }
+
+    .debit {
+      color: red;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      display: inline-block;
+      background: blue;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Transaction History</h2>
+  </header>
+
+  <div class="container">
+    <!-- Search & Filter -->
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by description...">
+      <select id="typeFilter">
+        <option value="all">All</option>
+        <option value="credit">Credit</option>
+        <option value="debit">Debit</option>
+      </select>
+    </div>
+
+    <!-- Transactions Table -->
+    <table id="transactionTable">
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>20-Aug-2025</td>
+        <td>Airtime Purchase</td>
+        <td class="debit">Debit</td>
+        <td>₦500</td>
+      </tr>
+      <tr>
+        <td>19-Aug-2025</td>
+        <td>Salary Credit</td>
+        <td class="credit">Credit</td>
+        <td>₦50,000</td>
+      </tr>
+      <tr>
+        <td>18-Aug-2025</td>
+        <td>Transfer to Amin</td>
+        <td class="debit">Debit</td>
+        <td>₦10,000</td>
+      </tr>
+      <tr>
+        <td>15-Aug-2025</td>
+        <td>Cashback Reward</td>
+        <td class="credit">Credit</td>
+        <td>₦0.06</td>
+      </tr>
+      <tr>
+        <td>15-Aug-2025</td>
+        <td>Cashback Reward</td>
+        <td class="credit">Credit</td>
+        <td>₦0.03</td>
+      </tr>
+      <tr>
+        <td>17-Aug-2025</td>
+        <td>Spend and Save</td>
+        <td class="credit">Credit</td>
+        <td>₦250</td>
+        <tr>
+            <td>20-Aug-2025</td>
+            <td>Airtime</td>
+            <td class="debit">Debit</td>
+            <td>₦500</td>
+          </tr>
+      </tr>
+    </table>
+
+    <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const typeFilter = document.getElementById("typeFilter");
+    const table = document.getElementById("transactionTable");
+    const rows = table.getElementsByTagName("tr");
+
+    function filterTable() {
+      const searchText = searchInput.value.toLowerCase();
+      const filterType = typeFilter.value;
+
+      for (let i = 1; i < rows.length; i++) {
+        let description = rows[i].getElementsByTagName("td")[1]?.textContent.toLowerCase();
+        let type = rows[i].getElementsByTagName("td")[2]?.textContent.toLowerCase();
+
+        let matchesSearch = description.includes(searchText);
+        let matchesType = filterType === "all" || type.includes(filterType);
+
+        if (matchesSearch && matchesType) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    }
+
+    searchInput.addEventListener("keyup", filterTable);
+    typeFilter.addEventListener("change", filterTable);
+  </script>
+</body>
+</html>

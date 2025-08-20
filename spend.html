@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spend & Save</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: blue;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .balance {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .balance h2 {
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: blue;
+      color: white;
+      padding: 10px 15px;
+      margin: 10px 5px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: green;
+    }
+
+    .goal {
+      background: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .progress-bar {
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress {
+      height: 20px;
+      width: 45%;
+      background: green;
+    }
+
+    .rules, .transactions, .offers, .summary {
+      background: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .transactions ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .transactions li {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: blue;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Spend & Save</h2>
+  </header>
+
+  <div class="container">
+
+    <!-- Savings Balance -->
+    <div class="balance">
+      <h2>₦5,800</h2>
+      <p>Total Savings from Spend & Save</p>
+      <a href="transfer.html" class="btn">Withdraw Savings</a>
+    </div>
+
+    <!-- Goal Progress -->
+    <div class="goal">
+      <h3>🎯 Savings Goal</h3>
+      <p>Target: ₦50,000</p>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <p><i>You’re 45% to your goal</i></p>
+    </div>
+
+    <!-- Saving Rules -->
+    <div class="rules">
+      <h3>⚙ Set Saving Rule</h3>
+      <p>Choose how you want to save:</p>
+      <button class="btn">Save ₦100 per Spend</button>
+      <button class="btn">Save 10% of Every Spend</button>
+    </div>
+
+    <!-- Transactions -->
+    <div class="transactions">
+      <h3>📑 Recent Auto-Savings</h3>
+      <ul>
+        <li>Saved ₦500 from Airtime Purchase (₦200)</li>
+        <li>Saved ₦300 from Electricity Bill (₦500)</li>
+        <li>Saved ₦100 from Data Purchase (₦1,000)</li>
+      </ul>
+    </div>
+
+    <!-- Offers -->
+    <div class="offers">
+      <h3>🔥 Special Offers</h3>
+      <ul>
+        <li>Save double on Shopping this week!</li>
+        <li>Electricity bill payments give extra ₦200 saved</li>
+      </ul>
+    </div>
+
+    <!-- Monthly Savings Summary -->
+    <div class="summary">
+      <h3>📊 Monthly Savings Growth</h3>
+      <canvas id="savingsChart"></canvas>
+    </div>
+
+    <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
+  </div>
+
+  <script>
+    // Chart.js for Monthly Savings
+    const ctx = document.getElementById('savingsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Savings Growth (₦)',
+          data: [5000, 8000, 12000, 16000, 20000, 22000, 25800],
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

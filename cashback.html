@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashback</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: blue;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .balance {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .balance h2 {
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: blue;
+      color: white;
+      padding: 10px 15px;
+      margin: 10px 5px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: green;
+    }
+
+    .filters {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .filters button {
+      padding: 8px 12px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      background: #ddd;
+      cursor: pointer;
+    }
+
+    .filters button.active {
+      background: blue;
+      color: white;
+    }
+
+    .progress-bar {
+      background: #ddd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress {
+      height: 20px;
+      width: 60%;
+      background: green;
+    }
+
+    .offers, .redeem, .summary {
+      background: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: blue;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Cashback Rewards</h2>
+  </header>
+
+  <div class="container">
+
+    <!-- Cashback Balance -->
+    <div class="balance">
+      <h2>₦500</h2>
+      <p>Total Cashback Balance</p>
+      <a href="transfer.html" class="btn">Withdraw Cashback</a>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button class="active">All</button>
+      <button>Airtime</button>
+      <button>Bills</button>
+      <button>Shopping</button>
+      <button>Transfers</button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div>
+      <p><b>Monthly Goal:</b> Earn ₦2,000 Cashback</p>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <p><i>You’re 60% to your goal 🎯</i></p>
+    </div>
+
+    <!-- Promotions -->
+    <div class="offers">
+      <h3>🔥 Ongoing Promotions</h3>
+      <ul>
+        <li>10% Cashback on Airtime Purchases</li>
+        <li>5% Cashback on Electricity Bills</li>
+        <li>Exclusive: ₦1,000 bonus when you shop over ₦20,000</li>
+      </ul>
+    </div>
+
+    <!-- Redeem Cashback -->
+    <div class="redeem">
+      <h3>💳 Redeem Options</h3>
+      <p>Use your cashback directly for:</p>
+      <button class="btn">Pay Bills</button>
+      <button class="btn">Buy Airtime</button>
+    </div>
+
+    <!-- Monthly Summary -->
+    <div class="summary">
+      <h3>📊 Monthly Cashback Summary</h3>
+      <canvas id="cashbackChart"></canvas>
+    </div>
+
+    <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
+  </div>
+
+  <script>
+    // Chart.js for Monthly Summary
+    const ctx = document.getElementById('cashbackChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Cashback Earned (₦)',
+          data: [4000, 6000, 3000, 8000, 5000, 7000, 12500],
+          backgroundColor: 'blue'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
